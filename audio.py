@@ -5,7 +5,7 @@ from scipy.io import wavfile
 from scipy import signal
 from hparams import hparams as hp
 
-# ----------------- Audio Utilities -----------------
+# ----------------- Audio Utilities 
 
 def load_wav(path, sr):
     return librosa.load(path, sr=sr)[0]
@@ -39,7 +39,7 @@ def melspectrogram(wav):
     S = _amp_to_db(_linear_to_mel(np.abs(D))) - hp.ref_level_db
     return _normalize(S) if hp.signal_normalization else S
 
-# ----------------- Mel Conversion -----------------
+# ----------------- Mel Conversion -------------------------------
 
 def _linear_to_mel(spectrogram):
     mel_basis = _build_mel_basis()
@@ -54,7 +54,7 @@ def _build_mel_basis():
         fmax=hp.fmax
     )
 
-# ----------------- DB/Normalization -----------------
+# ----------------- DB/Normalization ------------------------
 
 def _amp_to_db(x):
     min_level = np.exp(hp.min_level_db / 20 * np.log(10))
